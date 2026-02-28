@@ -12,7 +12,21 @@
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-[#0f0f0f] min-h-screen flex items-center justify-center p-4 antialiased">
+<body class="bg-[#0f0f0f] min-h-screen flex items-center justify-center p-4 antialiased relative">
+    @if (Route::has('login'))
+        <div class="absolute top-4 right-6 text-sm flex gap-4">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="text-[#9ca3af] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#f8f8f8] focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded p-1">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-[#9ca3af] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#f8f8f8] focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded p-1">Log in</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="bg-[#2a2a2a] text-[#ffffff] px-4 py-1.5 rounded-[4px] border border-[#444444] hover:bg-[#333333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#f8f8f8] focus:ring-offset-2 focus:ring-offset-[#1a1a1a]">Register</a>
+                @endif
+            @endauth
+        </div>
+    @endif
+
     <div class="bg-[#1a1a1a] border border-[#333333] w-full max-w-[800px] h-[350px] rounded-lg px-12 sm:px-[70px] flex flex-col justify-center shadow-lg">
         <h1 class="text-white font-semibold text-[17px]">Damar Sadewa</h1>
         <p class="text-[#9ca3af] text-[15px] mt-1 mb-5">20230140110</p>
