@@ -23,8 +23,9 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'qty' => 'required|integer',
-            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'qty' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
             'user_id' => 'required|exists:users,id',
         ];
     }
